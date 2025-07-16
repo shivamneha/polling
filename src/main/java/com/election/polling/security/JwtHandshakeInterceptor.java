@@ -43,7 +43,7 @@ public class JwtHandshakeInterceptor implements HandshakeInterceptor {
                     String username = jwtUtil.extractUsername(jwt);
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                    if (jwtUtil.validateToken(jwt, userDetails)) {
+                    if (jwtUtil.isTokenValid(jwt, userDetails.getUsername())) {
                         attributes.put("user", userDetails);
                         return true; // authenticated successfully
                     } else {
